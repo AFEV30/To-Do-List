@@ -1,0 +1,43 @@
+if (imageInput.files.length > 0) {
+                        completeBtn.style.display = "inline-block";
+                    } else {
+                        completeBtn.style.display = "none";
+                    }
+                });
+
+                completeBtn.onclick = function () {
+                    if (imageInput.files.length > 0) {
+                        document.getElementById("taskList").removeChild(li);
+                        document.getElementById("completedTasks").appendChild(
+                            createTaskElement(text, date, "completed")
+                        );
+                    } else {
+                        alert("Please upload a picture before completing the task.");
+                    }
+                };
+
+                imageContainer.appendChild(imageInput);
+                imageContainer.appendChild(completeBtn);
+
+                li.appendChild(taskSpan);
+                li.appendChild(imageContainer);
+            } 
+            else if (status === "completed") {
+                taskSpan.classList.add("completed");
+
+                let deleteBtn = document.createElement("button");
+                deleteBtn.innerHTML = "Delete";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = function () {
+                    document.getElementById("completedTasks").removeChild(li);
+                };
+
+                li.appendChild(taskSpan);
+                li.appendChild(deleteBtn);
+            }
+
+            return li;
+        }
+    </script>
+</body>
+</html>
